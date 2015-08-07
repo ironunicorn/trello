@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   has_many :boards
+  has_many :card_assignments
+  has_many :cards, through: :card_assignments
 
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
