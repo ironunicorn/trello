@@ -1,0 +1,15 @@
+<label for="card-name">New Card</label>
+<input type="text"
+       name="card[title]"
+       id="card-name"
+       value="<%= card.escape('title') %>">
+       <br>
+<label for="card-description">Description</label>
+<input type="text"
+       name="card[description]"
+       id="card-description"
+       value="<%= card.escape('description') %>">
+<input type="hidden"
+       name="card[list_id]"
+       value="<%= card.escape('list_id') %>">
+<input type="submit" value="add">

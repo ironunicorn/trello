@@ -4,6 +4,8 @@ window.Trello = {
   Views: {},
   Routers: {},
   initialize: function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
     var $rootEl = $(".content");
     new Trello.Routers.AppRouter($rootEl);
     Backbone.history.start();

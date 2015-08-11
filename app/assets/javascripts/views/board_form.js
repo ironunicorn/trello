@@ -3,6 +3,9 @@ Trello.Views.BoardForm = Backbone.CompositeView.extend({
   events: {
     "submit form": "submitForm"
   },
+  initialize: function () {
+    this.listenTo(this.model, 'sync', this.render);
+  },
   render: function () {
     this.$el.html(this.template({board: this.model}));
     return this;
@@ -12,11 +15,14 @@ Trello.Views.BoardForm = Backbone.CompositeView.extend({
     e.preventDefault();
     var view = this;
     var formData = $(e.currentTarget).serializeJSON().board;
-    var newBoard = new Trello.Models.Board(formData);
-    newBoard.save({}, {
+    this.model.set(formData);
+    this.model.save({}, {
       success: function () {
-        view.collection.add(this);
-        Backbone.history.navigate('boards/' + this.id)
+        view.collection.add(view.model);
+        Backbone.history.navigate(
+          '/boards/' + view.model.get('id'),
+          { trigger: true }
+        );
       }
     })
   }

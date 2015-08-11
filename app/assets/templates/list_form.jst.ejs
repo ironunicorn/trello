@@ -1,0 +1,9 @@
+<label for="list-name">New List</label>
+<input type="text"
+       name="list[title]"
+       id="list-name"
+       value="<%= list.escape('title') %>">
+<input type="hidden"
+       name="list[board_id]"
+       value="<%= list.escape('board_id') %>">
+<input type="submit" value="add">
